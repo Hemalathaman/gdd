@@ -1,0 +1,226 @@
+package entity;
+import java. util.Scanner;
+import java.util.Random;
+public class MyMain {
+	AccountDetails acall[]=new AccountDetails[4000];
+	int noofentry=0;
+	Scanner sc=new Scanner(System.in);
+	Scanner scStr=new Scanner(System.in);
+	private String moblieNumber;
+	public static void main(String[] args)
+	{
+		MyMain bankApp=new MyMain();
+		while(true)
+		{
+			System.out.println("The options are in the case:");
+			System.out.println("1.Submit user details");
+			System.out.println("2.deposit operation");
+			System.out.println("3.Withdrawal operation");
+			System.out.println("4.user all details");
+			System.out.println("5.user kycdetails");
+			System.out.println("6.show Balance");
+			System.out.println("7.Change MoblieNumber");
+			System.out.println("8.change mailid");
+           switch (new Scanner(System.in).nextInt()) {
+			
+			case 0:
+				System.exit(0);
+				break;
+
+			case 1:
+				bankApp.createAccount();
+				break;
+				
+			case 2:
+				bankApp.deposit();
+				break;
+			
+			case 3:
+				bankApp.withdraw();
+				break;
+			
+			case 4:
+				bankApp.showUserDetails();
+				break;
+			
+			case 5:
+				bankApp.kycDetails();
+				break;
+			case 6:
+				bankApp.balance();
+				break;
+			case 7:
+				bankApp.moblieno();
+				break;
+			case 8:
+				bankApp.mailid();
+				break;			
+		   default:
+			   System.out.println("invalid option");
+           
+		}
+		}
+	}
+		public void createAccount()
+		{
+		
+		Random random=new Random();
+			System.out.println(" Enter Account Number ");
+			int accNumber = sc.nextInt();
+			
+			System.out.println(" Enter Account Holder Name :- ");
+			String accHolderName = scStr.nextLine();
+			
+			System.out.println(" Enter Account Initial Balance:- ");
+			int balance = sc.nextInt();
+			System.out.println("Enter Account password:");
+			String  password=scStr.nextLine();
+			System.out.println("enter the pannumber:");
+			String panNumber=scStr.nextLine();
+			System.out.println("Enter the addhar Number:");
+			int addharNumber=sc.nextInt();
+			System.out.println("Enter the document type:");
+			String documentType=scStr.nextLine();
+			System.out.println("Enter the document Number:");
+			String documentNumber=scStr.nextLine();
+			System.out.println("Enter the housenumber:");
+			String houseNumber=scStr.nextLine();
+			System.out.println("enter the locality name:");
+			String localityName=scStr.nextLine();
+			System.out.println("Enter the city:");
+			String city=scStr.nextLine();
+			System.out.println( "enter moblie number:");
+			int mobileNumber=sc.nextInt();
+			System.out.println("Enter the email id:");
+			String emailid=scStr.nextLine();
+					
+		     
+         	AccountDetails ac=new AccountDetails(accNumber, accHolderName,balance,password);
+  			KycDetails ky=new KycDetails(panNumber,addharNumber,documentType,documentNumber);
+  			Contact c=new Contact(houseNumber,localityName,city,mobileNumber,emailid);
+	        ac.setkc(ky);
+	        ac.setc(c);
+  			acall[noofentry++]=ac;
+	        System.out.println(""+ac);
+	        System.out.println("Added to the account");
+					}		   
+
+public void deposit()
+{
+	System.out.println("Enter the account number:");
+	int acc=sc.nextInt();
+	System.out.println("Enter the amount to deposit");
+	int amount=sc.nextInt();
+	for(int i=0;i<noofentry;i++)
+	{
+		AccountDetails a=acall[i];
+		boolean isFound=(a.getAccountNumber()==acc)?true:false;
+		if(isFound)
+		{
+			a.setBalance(a.getBalance()+amount);
+			System.out.println("Amount deposited");
+			System.out.println(a.getBalance());
+		}
+		
+	}
+	
+	
+}	
+public void balance()
+{
+	// take user input as account number and render account balance;
+	System.out.println(" Enter Account Number to check Balance ");
+	int searchAccountNumber = sc.nextInt(); // 103
+	
+	boolean accountFound = false;
+	
+	for(int i = 0;i< noofentry ;i++)
+	{
+		AccountDetails a = acall[i];
+		
+		if(a.getAccountNumber() == searchAccountNumber)
+		{
+			System.out.println(" Current Balance :- "+a.getBalance()+" \n ");
+			accountFound = true;
+			break;
+		}
+		
+	}
+}
+
+public void withdraw()
+{
+	System.out.println("Enter the account number:");
+	int searchaccno=sc.nextInt();
+	System.out.println(" Enter amount to withdraw: ");
+	int amount=sc.nextInt();
+	AccountDetails account=null;
+	boolean accountFound = false;
+	
+	for(int i = 0;i< noofentry ;i++)
+	{
+		AccountDetails a = acall[i];
+		if(a.getAccountNumber() == searchaccno)
+		{
+			account=a;
+			accountFound=true;
+		}
+		if(accountFound)
+		{
+			account.setBalance(account.getBalance()-amount);
+		}
+		
+	System.out.println( account.getAccountNumber()+"-" +account.getBalance());
+}	
+}
+public void displayAllAccounts(AccountDetails a)
+{
+	
+	
+		System.out.print("\n"+a.getAccountNumber()+"\t");
+		System.out.print(a.getAccountHolderName()+"\t");
+		System.out.print(a.getBalance()+"\t");
+		System.out.println("\n---------------------------------------------\n");
+
+	}
+	
+	
+	public void  showUserDetails() {
+		
+		for(int i = 0;i< noofentry ;i++)
+		{
+			AccountDetails a = acall[i];
+			displayAllAccounts(a);
+		}
+	}
+	public void kycDetails()
+	{
+		System.out.println("Enter the account number:");
+		int searchaccno=sc.nextInt();
+	    System.out.println(AccountDetails.getkc);
+		
+	}
+	 public void moblieno()
+	 {
+		 System.out.println("Enter the accont number:");
+		 int searchno=sc.nextInt();
+		 Account a=null;
+		 if(searchno==a.getMoblieNumber())
+				 {
+			 System.out.println("moblie number:" +searchno);
+				 }
+		 
+	 }
+	 public void mailid()
+	 {
+		 System.out.println("Enter new email:");
+		 String  newemail=sc.nextLine();
+		 AccountDetails a=null;
+		 AccountDetails ad=a.getAccountDetails();
+		 ad.setemailid(newemail);
+	 }
+
+}
+
+	
+	

@@ -1,0 +1,79 @@
+package entity;
+
+public class AccountDetails {
+
+		private int accountNumber;
+		private String accountHolderName;
+		private int balance;
+		private String password;
+		private Contact c;
+		private KycDetails kc;
+		public AccountDetails(int accountNumber, String accountHolderName,int balance,String password) {
+			this.accountNumber = accountNumber;
+			this.accountHolderName = accountHolderName;
+			this.balance = balance;
+			this.password=password;
+			
+		}
+		public AccountDetails() {
+			super();
+		}
+		public Contact getc()
+		{
+			return c;
+		}
+		public void setc(Contact c)
+		{
+			this.c=c;
+		}
+        public KycDetails getkc()
+        {
+        	return kc;
+        }
+        public void setkc(KycDetails kc)
+        {
+        	this.kc=kc;
+        }
+		public int getAccountNumber() {
+			return accountNumber;
+		}
+		public void setAccountNumber(int accountNumber) {
+			this.accountNumber = accountNumber;
+		}
+		public String getAccountHolderName() {
+			return accountHolderName;
+		}
+		public void setAccountHolderName(String accountHolderName) {
+			this.accountHolderName = accountHolderName;
+		}
+		public int getBalance() {
+			return balance;
+		}
+		public void setBalance(int balance) {
+			this.balance = balance;
+		}
+		public String getpassword()
+		{
+			return password;
+		}
+		public void setpassword()
+		{
+			 this.password=password;
+		}
+		public String toString()
+		{
+			return "AccountDetails[accountNumber="+accountNumber+", Accountholdername="+accountHolderName+",balance="+balance+",password="+password+"]";
+		}
+		public AccountDetails getAccountDetails() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
+
+
+
+
+
+
+
